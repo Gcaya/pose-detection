@@ -1,0 +1,23 @@
+{
+  "name": "pose-detection",
+  "version": "1.0.0",
+  "description": "Body position detection",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gcaya/pose-detection.git"
+  },
+  "author": "Guillaume Caya-Letourneau",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gcaya/pose-detection/issues"
+  },
+  "homepage": "https://github.com/Gcaya/pose-detection#readme",
+  "dependencies": {
+    "@tensorflow-models/posenet": "^0.2.3",
+    "@tensorflow/tfjs": "^0.13.0",
+    "lodash": "^4.17.11"
+  }
+}
