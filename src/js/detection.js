@@ -1,24 +1,46 @@
+'use strict';
+import * as posenet from '@tensorflow-models/posenet';
 
-// chrome.runtime.onInstalled.addListener(function() {
-//     chrome.storage.sync.set({color: '#3aa757'}, function() {
-//       console.log("The color is green.");
-//     });
-//   });
+let canvas;
+let video;
+let net;
+let ctx;
 
-chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
-    // If the received message has the expected format...
-    if (msg.text === 'segment_video') {
+(function(){
+    chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
+        if (msg.text === 'segment_video') {
+            parseVideo();
+        }
+    });
+    
+    async function parseVideo() {
         
-        
-        const net = posenet.load();
+        if (!net)
+            net = await posenet.load();
 
+        video = document.getElementsByTagName('video')[0];
+        await video.play();
 
-        // await posenet.load().then(function(net) {
-        //     return net.estimateSinglePose(imageElement, imageScaleFactor, flipHorizontal, outputStride);
-        // })
+        video.addEventListener('timeupdate', drawFrame, false);
+        canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        ctx = canvas.getContext('2d');
 
-        // Call the specified callback, passing
-        // the web-page's DOM content as argument
-        sendResponse('On est passe ici on dirait');
-    }
-});
+    };
+    
+    async function drawFrame(e) {
+
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    
+        const pose = await net.estimateSinglePose(canvas, 0.50);
+        console.log(pose);
+    };
+    
+    // Might be needed for instagram
+    // function triggerClick(el) {
+    //     let event = document.createEvent('Events');
+    //     event.initEvent('click', true, false);
+    //     el.dispatchEvent(event);
+    // };
+})();

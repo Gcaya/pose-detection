@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Body position detection",
   "scripts": {
+    "build": "node utils/build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -10,7 +11,7 @@
     "url": "git+https://github.com/Gcaya/pose-detection.git"
   },
   "author": "Guillaume Caya-Letourneau",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Gcaya/pose-detection/issues"
   },
@@ -19,5 +20,16 @@
     "@tensorflow-models/posenet": "^0.2.3",
     "@tensorflow/tfjs": "^0.13.0",
     "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^1.0.1",
+    "copy-webpack-plugin": "^4.6.0",
+    "file-loader": "^3.0.1",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.1.14",
+    "write-file-webpack-plugin": "^4.5.0"
   }
 }
