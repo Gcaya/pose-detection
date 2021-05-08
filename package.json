@@ -19,7 +19,7 @@
   "dependencies": {
     "@tensorflow-models/posenet": "^0.2.3",
     "@tensorflow/tfjs": "^0.13.0",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^1.0.1",
